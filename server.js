@@ -8,13 +8,6 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL, // Replace with your Netlify URL
-    methods: "GET,POST,PUT,DELETE", // Specify allowed methods
-    credentials: true, // If you need to send cookies
-  })
-);
 
 const server = app.listen(process.env.PORT, () => {
   console.log("Server is listening on http://localhost:" + process.env.PORT);

@@ -126,7 +126,6 @@ module.exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
   const userObject = user.toObject ? user.toObject() : user;
   userObject.stripeApiKey = process.env.STRIPE_API_KEY;
 
-  console.log(">", userObject);
 
   res.status(200).json({
     success: true,

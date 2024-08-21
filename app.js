@@ -16,6 +16,15 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  })
+);
+app.options("*", cors());
 
 // Route Import
 app.use("/api/v1", productRoute);
@@ -27,5 +36,13 @@ app.use("/api/v1", paymentRoute);
 app.use(errorMiddleware);
 
 connectWithMongo();
+
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     credentials: true,
+//   })
+// );
+// app.options("*", cors());
 
 module.exports = app;

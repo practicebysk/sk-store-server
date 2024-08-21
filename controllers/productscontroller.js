@@ -63,7 +63,6 @@ module.exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
     .search()
     .filter()
     .pagination(resultPerPage);
-  console.log(">>", apiFeature);
   let products = await apiFeature.query;
 
   const filteredProductsCount = products.length;
@@ -207,7 +206,6 @@ module.exports.createProductReview = catchAsyncErrors(
 // Get All Reviews of a product
 module.exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
   const product = await Product.findById(req.query._id);
-  console.log(">>..");
   if (!product) {
     return next(new ErrorHandler("Product not found", 404));
   }
