@@ -47,6 +47,8 @@ module.exports.logout = catchAsyncErrors(async (req, res, next) => {
   res.cookie("token", null, {
     expires: new Date(Date.now()),
     httpOnly: true,
+    secure: true,
+    sameSite: "none",
   });
   res.status(200).json({
     success: true,
@@ -125,7 +127,6 @@ module.exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
   let user = await User.findById(req.user.id);
   const userObject = user.toObject ? user.toObject() : user;
   userObject.stripeApiKey = process.env.STRIPE_API_KEY;
-
 
   res.status(200).json({
     success: true,
