@@ -11,6 +11,7 @@ const {
   getSingleUser,
   updateUserRole,
   getAllUser,
+  deleteUser,
 } = require("../controllers/usercontroller");
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 const router = express.Router();
@@ -26,5 +27,5 @@ router.put("/me/update", isAuthenticatedUser, updateProfile);
 router.get("/admin/users", isAuthenticatedUser,authorizeRoles("admin") ,getAllUser);
 router.get("/admin/user/:id", isAuthenticatedUser,authorizeRoles("admin") ,getSingleUser);
 router.put("/admin/user/:id", isAuthenticatedUser,updateUserRole);
-router.delete("/admin/user/:id", isAuthenticatedUser,getSingleUser);
+router.delete("/admin/user/:id", isAuthenticatedUser,deleteUser);
 module.exports = router;
